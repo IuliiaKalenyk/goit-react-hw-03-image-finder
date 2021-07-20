@@ -1,31 +1,14 @@
-import s from './ImageGalleryItem.module.css';
-import PropTypes from 'prop-types';
+import { GalleryItem } from './ImageGalleryItem.styled';
 
-function ImageGalleryItem({
-  webformatURL,
-  largeImageURL,
-  tags,
-  handleImageClick,
-}) {
+export const ImageGalleryItem = ({
+  webformatURL = 'https://pixabay.com/en/blossom-bloom-flower-195893/',
+  tags = 'Awesome picture',
+  onClick,
+  img,
+}) => {
   return (
-    <li className={s.ImageGalleryItem}>
-      <img
-        src={webformatURL}
-        alt={tags}
-        className={s.ImageGalleryItem_image}
-        onClick={() => {
-          handleImageClick(largeImageURL, tags);
-        }}
-      />
-    </li>
+    <GalleryItem onClick={() => onClick(img)}>
+      <img src={webformatURL} alt={tags} />
+    </GalleryItem>
   );
-}
-
-ImageGalleryItem.propTypes = {
-  webformatURL: PropTypes.string,
-  largeImageURL: PropTypes.string,
-  tags: PropTypes.string,
-  handleImageClick: PropTypes.func,
 };
-
-export default ImageGalleryItem;
